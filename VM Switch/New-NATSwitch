@@ -1,0 +1,28 @@
+#New VM Switch NAT
+#Først lager vi en intern switch for NAT
+New-VMSwitch -SwitchType Internal -Name "SW100NAT"
+
+#Vi må så finne hvilken ifIndex vårt interne adapter har
+Get-NetAdapter
+
+#Sett en ny gatewayadresse på vårt interne nettverk.
+New-NetIPAddress -DefaultGateway 10.0.1.1 -PrefixLength 24 -InterfaceIndex 74
+
+#Så tildeler vi NAT'en en intern adresse scope
+New-NetNat -Name "SW100NAT" -ExternalIPInterfaceAddressPrefix 10.39.36.0/24
+
+#Her setter vi den eksterne adressen som Switchen vår skal tilhøre. Slik at den klarer å mappe IP adressene riktig.
+New-NetNat -Confirm -Name "SW100EXT" -InternalIPInterfaceAddressPrefix 10.0.1.0/24
+
+#Sjekk mappingen til swithcen.
+Get-NetNatStaticMapping -NatName "vEthernet (SW100NAT)"
+
+#Sjekk om du har en NAT satt opp
+Get-NetNat
+
+#Sjekk den eksterne adressen til NAT'en
+Get-NetNatExternalAddress
+
+#Om du behørver å fjerne alt igjen
+Remove-NetNat -Name "SW100EXT"
+Remove-VMSwitch -Name "SW100NAT"

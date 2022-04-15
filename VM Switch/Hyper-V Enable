@@ -1,0 +1,8 @@
+#Kan din PC kjøre Hyper-V? Den må ha virtualisering påslått.
+Get-ComputerInfo -Property HyperVRequirement |Format-List Properties
+
+msinfo32
+
+Get-ComputerInfo -Property 
+
+Get-ComputerInfo
