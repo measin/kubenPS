@@ -1,8 +1,20 @@
 #Kan din PC kjøre Hyper-V? Den må ha virtualisering påslått.
-Get-ComputerInfo -Property HyperVRequirement |Format-List Properties
+Get-ComputerInfo -Property HyperVRequirement* |Format-List
+#Om denne ikke gir deg svaret, så prøv msinfo32 i stedet
+# msinfo32
 
-msinfo32
-
-Get-ComputerInfo -Property 
-
-Get-ComputerInfo
+Get-WindowsOptionalFeature -Online -FeatureName *Hyper* | ft FeatureName,State
+    <# 
+    FeatureName                                State
+    -----------                                -----
+    HypervisorPlatform                      Disabled
+    Microsoft-Hyper-V-All                    Enabled
+    Microsoft-Hyper-V                        Enabled
+    Microsoft-Hyper-V-Tools-All              Enabled
+    Microsoft-Hyper-V-Management-PowerShell  Enabled
+    Microsoft-Hyper-V-Hypervisor             Enabled
+    Microsoft-Hyper-V-Services               Enabled
+    Microsoft-Hyper-V-Management-Clients     Enabled
+Om det ser slik ut, så er du klar til å lage virtuelle maskiner. Om ikke må du installere Hyper-V features.
+    #>
+Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -All -Online
