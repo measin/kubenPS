@@ -1,0 +1,15 @@
+#Vi lager en variabel med navnet på switchen, slik slipper vi å skrive navnet flere ganger, og kan også gjenbruke dette for VM oppsettet.
+#Denne variabelen ber om input fra deg, for å gi et navn til switchen.
+$isa = Read-Host "Skriv inn navnet på din swith"
+$eth = "vEthernet"
+$IS = ($eth +(" ")+(" $isa"))
+
+#Så  lager vi en intern switch
+
+New-VMSwitch -Name $IS -SwitchType Internal -Notes 'En intern switch er bare for kommunikasjon mellom VM, men den kan gjøres om til en NAT
+(Network Address Translation) slik at vi kan ha et helt nettverk på innsiden av denne.'
+
+(Get-NetAdapter -Name "vEthernet ('$isa')").ifIndex
+
+
+Get-NetAdapter
