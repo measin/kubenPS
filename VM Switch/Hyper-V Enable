@@ -3,7 +3,7 @@ Get-ComputerInfo -Property HyperVRequirement* |Format-List
 #Om denne ikke gir deg svaret, så prøv msinfo32 i stedet
 # msinfo32
 
-Get-WindowsOptionalFeature -Online -FeatureName *Hyper* | ft FeatureName,State
+Get-WindowsOptionalFeature -Online -FeatureName *Hyper* | Format-Table FeatureName,State
     <# 
     FeatureName                                State
     -----------                                -----
