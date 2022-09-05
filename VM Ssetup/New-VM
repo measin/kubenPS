@@ -15,7 +15,7 @@ Windows Klient         Off   0           0                 00:00:00 Fungerer som
 
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
-$vmname = Read-Host -Prompt 'Skiv inn navnet på din virtuelle maskin' #Hva skal den virtuelle maskinen hete?
+$vmname = Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin' #Hva skal den virtuelle maskinen hete?
 $mem = 2147483648 #Hvor mye minne skal du gi til maskinen?
 $vhdpath = 'C:\Users\Public\Documents\Hyper-V\Virtual hard disks' #Lokasjonen for den virtuelle harddisken
 $dvd = 'C:\Users\Alf Morten\Downloads\Win11_Norwegian_x64 (1).iso' #Bane til ISO filen som har operativsystemet
