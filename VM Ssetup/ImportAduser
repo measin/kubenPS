@@ -1,0 +1,28 @@
+$aduser = Import-Csv -Delimiter ";" -Encoding utf8 -Path C:\Users\Default
+$ou = $env:userdnsdomain
+$password = ConvertTo-SecureString -String "IMKuben1337!" -AsPlainText -Force
+
+foreach ($aduser in $adusers) {
+
+    #define a hashtable to splat to New-ADUser
+     $hash = @{
+      Name = $($name)
+      Displayname = $CN
+      Path = $ou
+      Surname = $SurName
+      GivenName = $GivenName
+      Samaccountname = $SamAccountName
+      UserPrincipalName = $UserPrincipalName
+      Department = $Department
+      Office = $StreetAddress
+      OfficePhone = $MobilePhone
+      AccountPassword = $password
+      Enabled = $True
+      ChangePasswordAtLogon = $True
+      City = $city
+      Description = "elever"
+      otherattributes = @{"info"="Created $(Get-Date) by $env:userdomain\$env:username"}
+     }
+    
+     New-ADUser @hash -PassThru 
+    }

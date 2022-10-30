@@ -1,0 +1,6 @@
+<#
+Admin nettet er initielt satt opp av 2 servere, Folkvang og Odin. Disse skal være satt opp som et High availabillity cluster.
+
+#>
+
+Install-WindowsFeature -FeatureName AD-Domain-Services
