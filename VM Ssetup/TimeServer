@@ -1,0 +1,26 @@
+<#
+Alle enheter i en AD skog må ha en felles referanse for tid. OM tiden avviker fra hoved AD for mye, over 5 min, vil du ikke få lov til å logge inn eller interagere med tjenester. 
+Klokka må da manuelt korrigeres på klienten før man kan prøve å logge inn igjen. 
+Her skal vi sette opp Windows Server til å være den som er autoritær for å gi ut tidssynkronisering på nettverket
+Først sjekker vi at den ikke er satt opp allerede, vi ser om Enabled flagget er satt til 1 i registeret med denne kommandoen.
+#>
+
+Get-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpServer\
+
+# Så skal vi sette flagget til 1 om det ikke er satt allerede. Du kan igjen sjekke med kommandoen overnfor, og se om det er endret.
+Get-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\TimeProviders\NtpServer\ -Property Enabled -Value 1
+
+# Neste steg er å sørge for at windows annonserer i nettverket at den er tilgjengelig for tids synkronisering.
+Set-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Config\ -PSProperty Announceflags -Value 5
+
+# Du kan se resultatet med kommandoen AnnounceFlags er normalt satt til 10 på enheter som ikke skal synkroniseres fra.
+Get-ItemProperty -Path Registry::HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\W32Time\Config\
+
+# Til sist må man starte tjenesten W32TIme om igjen for at endringene i registreret skal ta effekt.
+Restart-Service w32time
+
+# Med denne kommandoen vil du kunne se om tjenesten kjører. På serveren vil den være Status : Runnning, på en klient vil den bare kjøre på intervaller som er satt av systemet, og derfor ha Status : Stopped
+Get-Service w32time
+
+# Til sist må vi sørge for at tjeneseten kan nås over nettverket. Da må vi åpne port 123, for UDP som er protokollen NTP bruker.
+New-NetFirewallRule -Name "NTP Server Port" -DisplayName "NTP Server Port" -Description 'Allow NTP Server Port' -Profile Any -Direction Inbound -Protocol UDP -Action Allow -Program Any -LocalAddress Any -LocalPort 123

@@ -1,6 +1,7 @@
 #Hvor starter vi med å sette opp et VM?
 
-Get-VM
+#Get-VM
+
 <#
 Du vil da få en liste som dette om du har noen VM satt opp allerede. 
 Om det er tomt, så har du ingen VM satt opp. 
@@ -15,13 +16,16 @@ Windows Klient         Off   0           0                 00:00:00 Fungerer som
 
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
-$vmname = Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin' #Hva skal den virtuelle maskinen hete?
+$vmname = (Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin') #Hva skal den virtuelle maskinen hete?
 $mem = 2147483648 #Hvor mye minne skal du gi til maskinen?
-$vhdpath = 'C:\Users\Public\Documents\Hyper-V\Virtual hard disks' #Lokasjonen for den virtuelle harddisken
-$dvd = 'C:\Users\Alf Morten\Downloads\Win11_Norwegian_x64 (1).iso' #Bane til ISO filen som har operativsystemet
+$switch = 'Default Switch'
+$vhdpath = 'E:\VirtualMachines\Hyper-V\Virtual hard disks' #Lokasjonen for den virtuelle harddisken
+$dvd = 'F:\ISO\en-us_windows_server_2022_x64_dvd_620d7eac.iso' #Bane til ISO filen som har operativsystemet
 
-New-VM -Name $vmname -MemoryStartupBytes $mem -BootDevice CD -SwitchName $switch -NewVHDPath $vhdpath -NewVHDSizeBytes 274877906944 -Generation 2
+New-VM -Name $vmname -MemoryStartupBytes $mem -SwitchName $switch -VHDPath $vhdpath\$vmname.vhdx -Generation 2
 
-Set-VM -ComputerName $vmname -ProcessorCount 2 -DynamicMemory $true -Notes 'Dette er en Virtuell maskin for generelt bruk'
-Add-VMScsiController -VMName $vmname 
+Set-VMMemory -VMName $vmname -DynamicMemory $true 
+
+Set-VM -ComputerName -ProcessorCount 2 -DynamicMemory -Notes 'Dette er en Virtuell maskin for generelt bruk'
+Add-VMScsiController -VMName $vmname
 Add-VMDvdDrive -VMName $vmname -ControllerNumber 1 -Path $dvd

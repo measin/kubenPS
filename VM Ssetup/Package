@@ -1,0 +1,26 @@
+# Se hvilke pakketilbydere som er tilgjengelig på nett.
+Find-PackageProvider
+
+# Se hvilke pakketilbydere du har tilgjengelig på din PC.
+Get-PackageProvider -ListAvailable
+
+# Legge til pakketilbydere i systemet
+Get-PackageProvider  -Name PowerShellGet, Winget
+
+#Så må man installere pakketilbyderne man har lagt til
+Install-PackageProvider -Name PowerShellGet, Winget -Scope AllUsers
+
+Find-Package -Name *vsc**
+
+Install-Package WingetTools -Verbose
+
+
+Get-Module WingetTools
+
+#Sett opp så du kan koble deg til Azure
+#Først kan vi sjekke om du har modulen installert allerede.
+Get-Module -ListAvailable | Where-Object -Property Name -Like "*Azure*"
+
+#Så installerer vi eventuelt modulen for Remote Management (AzureRM)
+Install-Module -Name AzureRM
+
