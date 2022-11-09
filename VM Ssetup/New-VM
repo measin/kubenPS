@@ -22,10 +22,11 @@ $switch = 'Default Switch'
 $vhdpath = 'E:\VirtualMachines\Hyper-V\Virtual hard disks' #Lokasjonen for den virtuelle harddisken
 $dvd = 'F:\ISO\en-us_windows_server_2022_x64_dvd_620d7eac.iso' #Bane til ISO filen som har operativsystemet
 
-New-VM -Name $vmname -MemoryStartupBytes $mem -SwitchName $switch -VHDPath $vhdpath\$vmname.vhdx -Generation 2
+New-VM -Name $vmname -MemoryStartupBytes $mem -SwitchName $switch -NewVHDPath $vhdpath\$vmname.vhdx -NewVHDSizeBytes 256GB  -Generation 2
 
 Set-VMMemory -VMName $vmname -DynamicMemory $true 
 
-Set-VM -ComputerName -ProcessorCount 2 -DynamicMemory -Notes 'Dette er en Virtuell maskin for generelt bruk'
+Set-VM -Name $vmname -ProcessorCount 2 -DynamicMemory -Notes 'Dette er en Virtuell maskin for generelt bruk'
 Add-VMScsiController -VMName $vmname
-Add-VMDvdDrive -VMName $vmname -ControllerNumber 1 -Path $dvd
+Add-VMDvdDrive -VMName $vmname -ControllerNumber 1 -Path $dvd 
+
