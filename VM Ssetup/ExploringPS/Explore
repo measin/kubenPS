@@ -1,0 +1,52 @@
+#Utforske PowerShell 
+
+# Formater for cmdlet
+"Verb-Noun"
+
+# Help system
+Get-Help    
+Update-Help
+Get-Help about*
+
+# Command explore
+Get-Verb | measure
+Get-Command | measure
+
+# Get, Set, New, Connect, Exit, 
+# Explore modules
+Get-Command -Module NetTCPIP 
+Get-Command -Module Hyper-V
+Get-Command -Module Microsoft.PowerShell.Security
+Get-Command -Module ActiveDirectory -Verb get
+
+get-help *vm*
+Get-Command -Module Hyper-V
+get-help *switch*
+
+#FileHandling
+Get-ChildItem -Path C:\Users\Measi\Downloads
+
+#Klienthåndtering
+Get-Command -Module Microsoft.PowerShell.Management
+(Get-ComputerInfo).HyperVisorPresent
+Get-command -module Microsoft.PowerShell.Security
+
+#ServerManagement   
+Get-Command -Module ServerManager
+Get-Command -Module IISAdministration
+Get-Command -Module grouppolicy
+
+
+# Format to the right, select to the left
+Get-Process vmmem |Select-Object name, cpu |Format-Table name, CPU #Right
+Get-Process vmmem |Format-Table name, CPU |Select-Object name, cpu #Wrong
+
+# Input in Powershell
+# Write-Output -InputObject 'Hello World!'
+$name = Read-Host -Prompt "Please enter your name"
+Write-Output "Congratulations $name! You have written your first code with PowerShell!"
+
+# Variabler i PowerShell
+$_ 
+$PSVersionTable
+$

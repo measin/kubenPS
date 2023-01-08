@@ -1,0 +1,18 @@
+<#
+De første tingene vi må utføre ved oppsett av en nye server, er å endre navn, og å sette statisk IP adresse.
+Her er hvordan du utfører dette via PowerShell
+Først angir vi variablene som skal til for konfigurasjonen. Dernest kjøres kommandoene som skal til for å gjøre endringene.
+Om du har mange nettverksadaptere, så kjør Get-Netadapter først, og så endrer du ifIndex[x], slik at x er det adapteret du vil bruke. (Man teller alltid 0,1,2,3 osv. i lista over adapter).
+#>
+
+$name = Read-Host -Prompt 'Hva skal maskinen hete?'
+$IP = Read-Host -Prompt 'Hva er IP adressen til serveren?'
+$netadpter = (Get-NetAdapter).ifIndex[0]
+$gateway = Read-Host -Prompt 'Hva er GateWay adressen?'
+$DNS = Read-Host -Prompt 'Hva er DNS adressen i nettverket?'
+
+Rename-Computer -NewName $name
+
+Set-NetIPAddress -InterfaceIndex $netadpter -IPAddress $IP -AddressFamily IPv4 -PrefixLength 24 -PrefixOrigin Manual
+Set-NetRoute -InterfaceIndex $netadpter -DestinationPrefix 0.0.0.0/0 -NextHop $gateway
+Set-DnsClientServerAddress -InterfaceIndex $netadpter -ServerAddresses $DNS

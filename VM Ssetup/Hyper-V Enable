@@ -4,7 +4,7 @@ Get-ComputerInfo |Select-Object   -ExpandProperty HyperVisorPresent
 # msinfo32
 
 Get-WindowsOptionalFeature -Online -FeatureName *Hyper* | Format-Table FeatureName,State
-    <# 
+<# 
     FeatureName                                State
     -----------                                -----
     HypervisorPlatform                      Disabled
@@ -16,8 +16,7 @@ Get-WindowsOptionalFeature -Online -FeatureName *Hyper* | Format-Table FeatureNa
     Microsoft-Hyper-V-Services               Enabled
     Microsoft-Hyper-V-Management-Clients     Enabled
 
-    Om det ser slik ut, så er du klar til å lage virtuelle maskiner. 
+Om det ser slik ut, så er du klar til å lage virtuelle maskiner. 
+Om ikke må du installere Hyper-V features.  #>
 
-Om ikke må du installere Hyper-V features.
-    #>
 Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -All -Online
