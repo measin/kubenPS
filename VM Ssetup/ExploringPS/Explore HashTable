@@ -17,7 +17,7 @@ $value = "John"
 $name[$key] = $value
 
 $key = "Lastname"
-$valuse = "Doe"
+$value = "Doe"
 $name[$key] = $value
 
 <# Kjør koden over for å sjelle om Hashtablen er tom eller har data.
@@ -34,7 +34,7 @@ $name[$key] = $value
  La oss bytte ut en $value
 #>
 $key = "Lastname"
-$valuse = "Wright"
+$value = "Wright"
 $name[$key] = $value
 
 

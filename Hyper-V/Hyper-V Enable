@@ -20,3 +20,4 @@ Om det ser slik ut, så er du klar til å lage virtuelle maskiner.
 Om ikke må du installere Hyper-V features.  #>
 
 Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -All -Online
+

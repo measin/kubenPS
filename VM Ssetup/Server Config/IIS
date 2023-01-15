@@ -1,0 +1,5 @@
+# Installasjon av IIS på Windows Server
+Install-WindowsFeature Web-Server -IncludeManagementTools 
+
+# Sjekk at webbserveren kjører. Du vil få en respons fra websiden.
+Invoke-WebRequest http://localhost 
