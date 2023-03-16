@@ -1,0 +1,1 @@
+Add-WindowsCapability -Name Rsat.ServerManager.Tools~~~~0.0.1.0 -Online
