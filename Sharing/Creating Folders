@@ -1,0 +1,16 @@
+<#
+Først må vi lage en folder
+Vi bruker New-Item cmdlet, og må spesifisere -Name (navn på folderen), -Path (Hvilken (lokasjon) disk og mappe delingsmappen skal ligge i), 
+og -ItemType for hvilken Item som skal lages (kan lage fil, folder, link eller.
+Bryteren -Verbose gjør at den forteller hva kommandoen utfører
+#>
+New-Item -Name 'Delingsmappe' -Path C:\Sharing -ItemType Directory -Verbose
+
+
+<#
+Vi kan eventuelt også bruke variabler for å sette opp navn og lokasjon
+#>
+$navn = Read-Host 'Skriv inn navnet du vil bruke på denne item'
+$lokasjon = Read-Host 'Hvilken lokasjon skal du bruke? Format C:\FolderNavn'
+
+New-Item -Name $navn -Path $lokasjon -ItemType Directory -Verbose
