@@ -1,0 +1,7 @@
+<#
+
+#>
+
+$ModifiedFeature = Get-VMSwitchExtensionPortFeature -VMName VM2 -FeatureName "Ethernet Switch Port Security Settings"
+$ModifiedFeature.SettingData.EnableDhcpGuard = $false
+Set-VMSwitchExtensionPortFeature -VMName VM2 -VMSwitchExtensionFeature $ModifiedFeature

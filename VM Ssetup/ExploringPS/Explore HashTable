@@ -1,0 +1,64 @@
+# Først lager vi en hashtable
+$name = @{}
+# Vi lagrer Hashtablen i en variabel slik at vi kan bruke den igjen og igjen. Variabelen blir værende til vi avslutter økten i PowerShell
+
+
+# Så lager vi en sjekk for å se om Hashtablen som er lagret i variabelen vår, inneholder data.
+if ($name.count -eq 0) {
+Write-Output "The hashtable is empty."
+}
+ else {
+Write-Output "The hashtable is not empty"
+}
+
+# Neste steg er å legge til data i variablem.
+$key= "Firstname"
+$value = "John"
+$name[$key] = $value
+
+$key = "Lastname"
+$value = "Doe"
+$name[$key] = $value
+
+<# Kjør koden over for å sjelle om Hashtablen er tom eller har data.
+    Det vil se omtrent slik ut:
+         PS C:\> if ($name.count -eq 0) {
+          Write-Output "The hashtable is empty."
+         } else {
+         Write-Output "The hashtable is not empty"
+         }
+    The hashtable is not empty
+
+ Om du ikke har gjettet det ennå, så legger man til data i par i en hashtable. 
+ $key er det som ferteller hva dataen er, mens $value er verdien for dataene.
+ La oss bytte ut en $value
+#>
+$key = "Lastname"
+$value = "Wright"
+$name[$key] = $value
+
+
+$name
+<# Så kan vi se hva som ligger i Hashtablen
+        PS C:\> $name
+
+        Name                           Value
+        ----                           -----
+        Lastname                       Wright
+        Firstname                      John
+#>
+
+<# 
+DU kan bruke variabelnamvnet $name for å hente ut data. Men man kan også velge å lage sin egen måte 
+å reprodusere dataene slik at man kan bruke dem til spesifikke formål
+Her Her velger vi å få ut navnet på variabelen, med en kolon før vi får verdien på dataene. 
+Legg også merke til at formatering av Write-Output gir utslag på presentasjonen, 
+forsøk å legg til noen ekstra plasser med luft før eller etter kolonet.
+#>
+foreach ($key in $name.Keys) {
+         $value = $name[$key]
+         Write-Output "${key}: ${value}"
+         }
+Lastname: Wright
+Firstname: Jon
+

@@ -1,0 +1,18 @@
+<#
+Når serveren er konfigurert med IP og Navn, kan du fortsette her.
+Nå skal vi legge til de tjenestene som skal kjøre på serveren. 
+Forutsettningen er at dette er en standard server, satt opp som den første AD serveren i bedriften.
+
+#>
+
+Install-WindowsFeature -Name AD-Domain-Services, DHCP, DNS, FS_Fileserver  -IncludeAllSubFeature -IncludeManagementTools
+
+# Hva skal navnet på domenet være?
+$DomainName = Read-Host -Prompt 'Hva skal navnet på domenet være, husk tldr (.net, .com, .no osv)'
+$DomainPassword = Read-Host -Prompt "Hva skal passordet være?" -AsSecureString Q2w3e4r5
+
+# Så tester vi å ser om dette vil fungere.
+
+Test-ADDSForestInstallation -DomainName $DomainName -InstallDns -SafeModeAdministratorPassword $DomainPassword
+
+Install-ADDSFor
