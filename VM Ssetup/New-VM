@@ -16,21 +16,27 @@ Windows Klient         Off   0           0                 00:00:00 Fungerer som
 
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
-
 $mem = 2048MB #Hvor mye minne skal du gi til maskinen?
 $switch = 'Default Switch'
 $vhdpath = 'E:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
 $vhdsize = 256GB
-$dvd = "C:\Users\AlfMorten\Downloads\en-us_windows_10_consumer_editions_version_21h2_x64_dvd_6cfdb144.iso" #Bane til ISO filen som har operativsystemet
+$dvd = "C:\Users\AlfMorten\Downloads\en_windows_server_2019_updated_sept_2019_x64_dvd_199664ce.iso" #Bane til ISO filen som har operativsystemet
 $vmname = (Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin') #Hva skal den virtuelle maskinen hete?
-$mem = 2147483648 #Hvor mye minne skal du gi til maskinen?
-$switch = 'Default Switch'
-$vhdpath = 'E:\VirtualMachines\Hyper-V\Virtual hard disks' #Lokasjonen for den virtuelle harddisken
-$dvd = 'F:\ISO\en-us_windows_server_2022_x64_dvd_620d7eac.iso' #Bane til ISO filen som har operativsystemet
+
+#Så lager vi den virtuelle maskinen med variablene vi har satt opp.
+New-VM -Name $vmname -MemoryStartupBytes $mem -SwitchName $switch -NewVHDSizeBytes $vhdsize -NewVHDPath $vhdpath\$vmname.vhdx -Generation 2
 
 
-Set-VMMemory -VMName $vmname -DynamicMemory $true 
+Set-VMMemory -VMName $vmname -DynamicMemory $true
 
 Set-VM -Name $vmname -ProcessorCount 4 -DynamicMemory -Notes 'Dette er en Virtuell maskin for generelt bruk'
 Add-VMScsiController -VMName $vmname
 Add-VMDvdDrive -VMName $vmname -ControllerNumber 1 -Path $dvd
+
+
+$network = Get-VMNetworkAdapter -VMName $vmname
+$diskphy = Get-VMHardDiskDrive -VMName $vmname
+$dvdboot = Get-VMDvdDrive -VMName $vmname
+Set-VMFirmware -VMName $vmname -BootOrder $dvdboot, $diskphy, $network
+
+Get-Help Set-VMFirmware -ShowWindow
