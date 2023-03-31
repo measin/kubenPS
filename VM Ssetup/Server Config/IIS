@@ -2,4 +2,9 @@
 Install-WindowsFeature Web-Server -IncludeManagementTools 
 
 # Sjekk at webbserveren kjører. Du vil få en respons fra websiden.
-Invoke-WebRequest http://localhost 
+Invoke-WebRequest http://nrk.no
+
+Invoke-WebRequest |Get-Member
+
+
+Invoke-WebRequest -Headers  -Uri vg.no
