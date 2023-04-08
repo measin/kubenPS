@@ -1,0 +1,13 @@
+<#
+Her ser du hvordan du kan legge til funksjonalitet i Windows ved hjelp av PowerShell
+
+#>
+Get-WindowsCapability -Online
+
+Add-WindowsCapability -Name Rsat.ServerManager.Tools~~~~0.0.1.0 -Online
+
+Add-WindowsCapability -Name Rsat.DHCP.Tools~~~~0.0.1.0 -Online
+
+Add-WindowsCapability -Name Rsat.Dns.Tools~~~~0.0.1.0 -Online
+
+Add-WindowsCapability -Name Rsat.ActiveDirectory.DS-LDS.Tools~~~~0.0.1.0 -Online
