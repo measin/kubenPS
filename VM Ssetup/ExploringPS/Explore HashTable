@@ -20,7 +20,7 @@ $key = "Lastname"
 $value = "Doe"
 $name[$key] = $value
 
-<# Kjør koden over for å sjelle om Hashtablen er tom eller har data.
+<# Kjør koden over for å sjekke om Hashtablen er tom eller har data.
     Det vil se omtrent slik ut:
          PS C:\> if ($name.count -eq 0) {
           Write-Output "The hashtable is empty."
@@ -51,7 +51,7 @@ $name
 <# 
 DU kan bruke variabelnamvnet $name for å hente ut data. Men man kan også velge å lage sin egen måte 
 å reprodusere dataene slik at man kan bruke dem til spesifikke formål
-Her Her velger vi å få ut navnet på variabelen, med en kolon før vi får verdien på dataene. 
+Her velger vi å få ut navnet på variabelen, med en kolon før vi får verdien på dataene. 
 Legg også merke til at formatering av Write-Output gir utslag på presentasjonen, 
 forsøk å legg til noen ekstra plasser med luft før eller etter kolonet.
 #>
