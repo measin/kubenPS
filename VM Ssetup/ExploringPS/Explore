@@ -9,8 +9,8 @@ Update-Help
 Get-Help about*
 
 # Command explore
-Get-Verb | measure
-Get-Command | measure
+Get-Verb | Measure-Object
+Get-Command | Measure-Object
 
 # Get, Set, New, Connect, Exit, 
 # Explore modules
@@ -31,6 +31,14 @@ Get-Command -Module Microsoft.PowerShell.Management
 (Get-ComputerInfo).HyperVisorPresent
 Get-command -module Microsoft.PowerShell.Security
 
+Set-Clipboard(Get-Process)
+Get-Clipboard
+Get-ComputerInfo
+(Get-ComputerInfo).BiosFirmwareType
+(Get-ComputerInfo).CsProcessors
+$memgb = (Get-ComputerInfo).CsPhysicallyInstalledMemory
+$memgb
+
 #ServerManagement   
 Get-Command -Module ServerManager
 Get-Command -Module IISAdministration
@@ -50,3 +58,4 @@ Write-Output "Congratulations $name! You have written your first code with Power
 $_ 
 $PSVersionTable
 $
+

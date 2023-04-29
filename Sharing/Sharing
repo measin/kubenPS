@@ -9,3 +9,7 @@ Man kan også om man vil spesifisere -NoAccess, ingen tilgang for spesifikke bru
 #>
 
 New-SmbShare -Name 'Shared Files' -Path C:\Filsehare1 -Description 'Dette er en delt folder i nettverket' -ConcurrentUserLimit 4 -FullAccess Administrators -ReadAccess Users
+
+$ADobj = Import-Csv C:\Users\Measi\OneDrive\Skrivebord\ADComputerName.csv
+
+Get-VM
