@@ -1,0 +1,15 @@
+#Utforsk moduler i PowerShell
+Get-Module -All
+
+#Finn ut hvilke kommandoer som tilhører en spesifikk modul.
+Get-Command -Module Microsoft.PowerShell.Utility
+Get-Command -Module PowerShellGet
+
+#Hva gjør et verb? Verbet er den første delen av en cmdlet.
+Get-Verb -Verb Get
+Get-Verb -Verb Set
+
+#Get-Help
+Get-Help *security*
+Get-Command -Module NetSecurity
+Get-Command -Module Hyper-V

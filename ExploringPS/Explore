@@ -53,9 +53,12 @@ Get-Process vmmem |Format-Table name, CPU |Select-Object name, cpu #Wrong
 # Write-Output -InputObject 'Hello World!'
 $name = Read-Host -Prompt "Please enter your name"
 Write-Output "Congratulations $name! You have written your first code with PowerShell!"
+Get-Help -Name Read-Host -Full
 
-# Variabler i PowerShell
+# Variabler i PowerShell, om du legger til -Online på Get-Help så vil du få opp websiden med hjelp, 
+# ofte vil du finne videre informasjon der.
 $_ 
 $PSVersionTable
 $
-
+Get-Help about_Variables
+Get-Help about_Environment_Variables

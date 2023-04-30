@@ -1,14 +1,7 @@
 {
-	"folders": [
-		{
-			"path": ".."
-		},
-		{
-			"name": "DemoDB",
-			"path": "../../../OneDrive/Documents/DatabaseProj/DemoDB"
-		}
-	],
-	"settings": {
-		"powershell.cwd": "c:\\Users\\Measi\\OneDrive\\Documents\\DatabaseProj\\DemoDB"
-	}
+    "folders": [
+        {
+            "path": "../../kubenPS"
+        }
+    ]
 }
