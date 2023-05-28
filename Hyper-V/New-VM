@@ -14,13 +14,15 @@ Tanking                Off   0           0                 00:00:00 Fungerer som
 Windows 10 Demo Klient Off   0           0                 00:00:00 Fungerer som normalt 9.0
 Windows Klient         Off   0           0                 00:00:00 Fungerer som normalt 9.0
 
+Get-Help Set-VMFirmware -ShowWindow
+
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
 $mem = 2048MB #Hvor mye minne skal du gi til maskinen?
 $switch = 'Default Switch'
 $vhdpath = 'E:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
 $vhdsize = 256GB
-$dvd = "C:\Users\AlfMorten\Downloads\en_windows_server_2019_updated_sept_2019_x64_dvd_199664ce.iso" #Bane til ISO filen som har operativsystemet
+$dvd = "F:\ISO\en-us_windows_10_consumer_editions_version_22h2_x64_dvd_8da72ab3.iso" #Bane til ISO filen som har operativsystemet
 $vmname = (Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin') #Hva skal den virtuelle maskinen hete?
 
 #Så lager vi den virtuelle maskinen med variablene vi har satt opp.
@@ -39,4 +41,3 @@ $diskphy = Get-VMHardDiskDrive -VMName $vmname
 $dvdboot = Get-VMDvdDrive -VMName $vmname
 Set-VMFirmware -VMName $vmname -BootOrder $dvdboot, $diskphy, $network
 
-Get-Help Set-VMFirmware -ShowWindow
