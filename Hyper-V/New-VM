@@ -16,10 +16,21 @@ Windows Klient         Off   0           0                 00:00:00 Fungerer som
 
 Get-Help Set-VMFirmware -ShowWindow
 
+Get-VMSwitch
+Name           SwitchType NetAdapterInterfaceDescription
+----           ---------- ------------------------------
+DaljordLAN     External   Intel(R) I210 Gigabit Network Connection
+AdminLAN       Internal
+Test           Internal
+PrivateNetwork Private
+ProWLAN        External   Intel(R) Wi-Fi 6 AX200 160MHz
+WLAN           External   Intel(R) PRO/1000 PT Dual Port Server Adapter
+Default Switch Internal
+
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
 $mem = 2048MB #Hvor mye minne skal du gi til maskinen?
-$switch = 'Default Switch'
+$switch = 'ADminLan'
 $vhdpath = 'E:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
 $vhdsize = 256GB
 $dvd = "F:\ISO\en-us_windows_10_consumer_editions_version_22h2_x64_dvd_8da72ab3.iso" #Bane til ISO filen som har operativsystemet
