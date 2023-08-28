@@ -5,6 +5,7 @@ Først angir vi variablene som skal til for konfigurasjonen. Dernest kjøres kom
 Om du har mange nettverksadaptere, så kjør Get-Netadapter først, og så endrer du ifIndex[x], slik at x er det adapteret du vil bruke. (Man teller alltid 0,1,2,3 osv. i lista over adapter).
 #>
 
+$alf = Read-Host -Prompt 'Hva heter du?'
 $name = Read-Host -Prompt 'Hva skal maskinen hete?'
 $IP = Read-Host -Prompt 'Hva er IP adressen til serveren?'
 $netadpter = (Get-NetAdapter).ifIndex[0]
