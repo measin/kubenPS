@@ -29,11 +29,11 @@ Default Switch Internal
 
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
-$mem = 2048MB #Hvor mye minne skal du gi til maskinen?
+$mem = 4096MB #Hvor mye minne skal du gi til maskinen?
 $switch = 'ADminLan'
 $vhdpath = 'E:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
 $vhdsize = 256GB
-$dvd = "F:\ISO\en-us_windows_10_consumer_editions_version_22h2_x64_dvd_8da72ab3.iso" #Bane til ISO filen som har operativsystemet
+$dvd = "F:\ISO\en-us_windows_server_2022_x64_dvd_620d7eac.iso" #Bane til ISO filen som har operativsystemet
 $vmname = (Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin') #Hva skal den virtuelle maskinen hete?
 
 #Så lager vi den virtuelle maskinen med variablene vi har satt opp.
