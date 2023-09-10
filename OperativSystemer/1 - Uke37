@@ -5,5 +5,8 @@ Alle skal begynne med installasjon av Server 2022 på HP 260
 Etter installasjonen er ferdig, finner dere drivere til nettverk og skjermkort på USB stick. Kjør disse og ta en omstart.
 Gi serveren nytt navn, skal være oppbygget som SRV-'DittNavn', ingen mellomrom eller spesialtegn.
 
-Sette statisk IP adresse. Du skal her bruke kommandoer fra C:\Users\Measi\kubenps\kubenPS-1\OperativSystemer\2 - Config after install
+Sette statisk IP adresse. Du skal her bruke kommandoer fra :
+https://github.com/measin/kubenPS/blob/84a9caaf9c2456af29ce61bd9d397e2518195d38/OperativSystemer/2%20-%20Config%20after%20install#L20
+Kommandoene kan kopieres inn i PowerShell fra Github på web, eller du kan laste det ned til VSCode eller annen kode editor.
+
 #>
