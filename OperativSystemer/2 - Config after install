@@ -4,6 +4,9 @@ Rename-Computer -NewName SRV-AlfMorten
 
 <#Så skal vi sette opp nettverket med statisk IP adresse. Først angir vi variablene som skal til for konfigurasjonen. Dernest kjøres kommandoene som skal til for å gjøre endringene.
 Om du har mange nettverksadaptere, så kjør Get-Netadapter først, og så endrer du ifIndex[x], slik at x er det adapteret du vil bruke. (Man teller alltid 0,1,2,3 osv. i lista over adapter).
+
+Kjør koden linje for linje!
+Om du kopierer alt og kjører det på en gang så vil du få noen feil.
 #>
 
 $IP = Read-Host -Prompt 'Hva er IP adressen til serveren?' #Din IP adresse er i Excel arket som ligger i oppgaven.
