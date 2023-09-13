@@ -18,10 +18,9 @@ C://Apache24 skal det se ut som.
 Start NotePad med httdp.conf for å endre konfigurasjoner i Apache server:
 notepad .\httpd.conf
 
-![Alt text](image.png)
 #>
 
-#Så må vi åpne brannmuren 
-New-NetFirewallRule -DisplayName 'HTTP-Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('80', '443')
+#Så må vi åpne brannmuren på serveren din. Prøv å koble til naboens webserver, får du det til?
 
-#
+
+New-NetFirewallRule -DisplayName 'HTTP-Inbound' -Profile @('Domain', 'Private') -Direction Inbound -Action Allow -Protocol TCP -LocalPort @('80', '443')
