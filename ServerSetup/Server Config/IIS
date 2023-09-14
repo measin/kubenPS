@@ -7,4 +7,5 @@ Invoke-WebRequest http://nrk.no
 Invoke-WebRequest |Get-Member
 
 
-Invoke-WebRequest -Headers  -Uri vg.no
+Get-Help Invoke-WebRequest -ShowWindow
+  -Uri vg.no

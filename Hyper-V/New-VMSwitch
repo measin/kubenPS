@@ -1,15 +1,20 @@
-#Vi lager en variabel med navnet på switchen, slik slipper vi å skrive navnet flere ganger, og kan også gjenbruke dette for VM oppsettet.
-#Denne variabelen ber om input fra deg, for å gi et navn til switchen.
+<# https://learn.microsoft.com/en-us/virtualization/hyper-v-on-windows/user-guide/setup-nat-network
+Vi lager en variabel med navnet på switchen, slik slipper vi å skrive navnet flere ganger, og kan også gjenbruke dette for VM oppsettet.
+Denne variabelen ber om input fra deg, for å gi et navn til switchen.
+Først kan vi sjekke om det er noen interne nettverksswitcher som er satt opp allerede.
+'Default Switch' er allerede satt opp med NAT, men du kan få problemer med statiske IP adresser (server m.v).
+#>
+Get-VMSwitch -SwitchType Internal
 $isa = Read-Host "Skriv inn navnet på din swith"
 $eth = "vEthernet"
 $IS = ($eth +(" ")+(" $isa"))
 
 #Så  lager vi en intern switch
+New-VMSwitch -Name $IS -SwitchType Internal -Notes 'En intern switch er bare for kommunikasjon mellom VM, 
+men den kan gjøres om til en NAT (Network Address Translation) slik at vi kan ha et helt nettverk på innsiden av denne.'
 
-New-VMSwitch -Name $IS -SwitchType Internal -Notes 'En intern switch er bare for kommunikasjon mellom VM, men den kan gjøres om til en NAT
-(Network Address Translation) slik at vi kan ha et helt nettverk på innsiden av denne.'
-
-(Get-NetAdapter -Name "vEthernet ('$isa')").ifIndex
+#VI lagrer 'ifIndex' til en variabel for å bruke denne når vi setter opp NAT.
+$ifIn = (Get-NetAdapter -Name "vEthernet ('$isa')").ifIndex
 
 
 Get-NetAdapter

@@ -1,0 +1,22 @@
+# Gi nytt navn til serveren, her bruker du navn som SRV-'MittNavn'
+
+Rename-Computer -NewName SRV-AlfMorten
+
+<#Så skal vi sette opp nettverket med statisk IP adresse. Først angir vi variablene som skal til for konfigurasjonen. Dernest kjøres kommandoene som skal til for å gjøre endringene.
+Om du har mange nettverksadaptere, så kjør Get-Netadapter først, og så endrer du ifIndex[x], slik at x er det adapteret du vil bruke. (Man teller alltid 0,1,2,3 osv. i lista over adapter).
+
+Kjør koden linje for linje!
+Om du kopierer alt og kjører det på en gang så vil du få noen feil.
+#>
+
+$IP = Read-Host -Prompt 'Hva er IP adressen til serveren?' #Din IP adresse er i Excel arket som ligger i oppgaven.
+$netadpter = (Get-NetAdapter).ifIndex[0]
+$gateway = Read-Host -Prompt 'Hva er GateWay adressen?' # GateWay adressen er 10.0.0.1
+$DNS = Read-Host -Prompt 'Hva er DNS adressen i nettverket?' # DNS adressen på Kuben IT er 10.0.0.10
+
+Rename-Computer -NewName $name
+
+New-NetIPAddress -IPAddress $IP -InterfaceIndex $netadpter -PrefixLength 8 -AddressFamily IPv4 -DefaultGateway $gateway
+Set-NetRoute -InterfaceIndex $netadpter -DestinationPrefix 0.0.0.0/0 -NextHop $gateway
+Set-DnsClientServerAddress -InterfaceIndex $netadpter -ServerAddresses $DNS
+

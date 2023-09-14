@@ -21,3 +21,5 @@ Om ikke må du installere Hyper-V features.  #>
 
 Enable-WindowsOptionalFeature -FeatureName Microsoft-Hyper-V-All -All -Online
 
+#Se hvilke commandoer som er tilgjengelig for Hyper-V
+Get-Command -Module Hyper-V

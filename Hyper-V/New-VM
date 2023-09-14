@@ -14,13 +14,26 @@ Tanking                Off   0           0                 00:00:00 Fungerer som
 Windows 10 Demo Klient Off   0           0                 00:00:00 Fungerer som normalt 9.0
 Windows Klient         Off   0           0                 00:00:00 Fungerer som normalt 9.0
 
+Get-Help Set-VMFirmware -ShowWindow
+
+Get-VMSwitch
+Name           SwitchType NetAdapterInterfaceDescription
+----           ---------- ------------------------------
+DaljordLAN     External   Intel(R) I210 Gigabit Network Connection
+AdminLAN       Internal
+Test           Internal
+PrivateNetwork Private
+ProWLAN        External   Intel(R) Wi-Fi 6 AX200 160MHz
+WLAN           External   Intel(R) PRO/1000 PT Dual Port Server Adapter
+Default Switch Internal
+
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
-$mem = 2048MB #Hvor mye minne skal du gi til maskinen?
-$switch = 'Default Switch'
+$mem = 4096MB #Hvor mye minne skal du gi til maskinen?
+$switch = 'ADminLan'
 $vhdpath = 'E:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
 $vhdsize = 256GB
-$dvd = "C:\Users\AlfMorten\Downloads\en_windows_server_2019_updated_sept_2019_x64_dvd_199664ce.iso" #Bane til ISO filen som har operativsystemet
+$dvd = "F:\ISO\en-us_windows_server_2022_x64_dvd_620d7eac.iso" #Bane til ISO filen som har operativsystemet
 $vmname = (Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin') #Hva skal den virtuelle maskinen hete?
 
 #Så lager vi den virtuelle maskinen med variablene vi har satt opp.
@@ -39,4 +52,3 @@ $diskphy = Get-VMHardDiskDrive -VMName $vmname
 $dvdboot = Get-VMDvdDrive -VMName $vmname
 Set-VMFirmware -VMName $vmname -BootOrder $dvdboot, $diskphy, $network
 
-Get-Help Set-VMFirmware -ShowWindow

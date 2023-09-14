@@ -1,0 +1,84 @@
+<#
+Ting du må ha:
+    En liste med brukere i csv format.
+Du kan lage passord for brukerne her https://manytools.org/network/password-generator/ og sette denne inn i CSV filen
+Her can du lage brukere for din AD https://generatedata.com/.
+Eventuelt kan du bruke følgende linje for å lage et passord:
+$SecurePass = ConvertTo-SecureString "IMKuben1337!" -AsPlainText -Force
+Passordet du gir til scriptet må være konvertert til SecureString ellers vii det ikke virke.
+#>
+
+#Import required modules, sikrer at vi har verktøyet som skal til for at PowerShell skal kunne kjøre koden.
+Import-Module ActiveDirectory
+
+#Spør etter hvor CSV filen ligger
+$filepath = Read-Host -Prompt "Skriv inn banen til CSV filen du vil bruke"
+
+# Importer filen inn i en variabel
+$users = Import-Csv $filepath
+
+# Sette opp en loop som går gjennom alle brukerne i CSV filen og lager en AD bruker for dem.
+
+foreach ($user  in $users ) {
+    $user 
+}
+
+
+<#
+###
+### These are vairable you need to update to reflect your environment
+###
+
+$Admin = "Admin@contoso.com"
+$AdminPassword = "my password"
+$Directory = "contoso.com"
+$NewUserPassword = "newuserspasswords"
+$CsvFilePath = "C:\work\users.csv"
+
+
+###
+### Create a PowerShell connection to my directory. If you do not want to specify the password in the script, you can simply replace this with "Connect-AzureAD", which will prompt for a username and password.
+###
+
+$SecPass = ConvertTo-SecureString $AdminPassword -AsPlainText -Force
+$Cred = New-Object System.Management.Automation.PSCredential ($Admin, $SecPass)
+Connect-AzureAD -Credential $cred
+
+###
+### Create a new Password Profile for the new users. We'll be using the same password for all new users in this example
+###
+
+$PasswordProfile = New-Object -TypeName Microsoft.Open.AzureAD.Model.PasswordProfile
+$PasswordProfile.Password = $NewUserPassword
+
+###
+### Import the csv file. You will need to specify the path and file name of the CSV file in this cmdlet
+###
+
+$NewUsers = import-csv -Path $CsvFilePath
+
+###
+### Loop through all new users in the file. We'll use the ForEach cmdlet for this.
+###
+
+Foreach ($NewUser in $NewUsers) { 
+
+###
+### Construct the UserPrincipalName, the MailNickName and the DisplayName from the input data in the file 
+###
+
+    $UPN = $NewUser.Firstname + "." + $NewUser.LastName + "@" + $Directory
+    $DisplayName = $NewUser.Firstname + " " + $NewUser.Lastname + " (" + $NewUser.Department + ")"
+    $MailNickName = $NewUser.Firstname + "." + $NewUser.LastName
+
+###
+### Now that we have all the necessary data for to create the new user, we can execute the New-AzureADUser cmdlet  
+###
+
+    New-AzureADUser -UserPrincipalName $UPN -AccountEnabled $true -DisplayName $DisplayName -GivenName $NewUser.FirstName -MailNickName $MailNickName -Surname $NewUser.LastName -Department $Newuser.Department -JobTitle $NewUser.JobTitle -PasswordProfile $PasswordProfile
+
+###
+### End the Foreach loop
+###
+    }
+#>

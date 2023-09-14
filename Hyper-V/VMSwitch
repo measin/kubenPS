@@ -1,5 +1,6 @@
 <#
-
+Her endrer vi på VM switchen for å sette DHCP Guard disabled. DHCP guard
+Get-vm
 #>
 
 $ModifiedFeature = Get-VMSwitchExtensionPortFeature -VMName VM2 -FeatureName "Ethernet Switch Port Security Settings"

@@ -1,0 +1,7 @@
+<# Her ser du hvordan du kan legge en PC til i ditt domene, fra PowerShell
+ Først må du lagre innlogging til DomainController
+#>
+
+$cred = Get-Credential -Credential administrator@dittdomene.navn 
+
+Add-Computer -DomainName internal.tech -Credential $cred -Restart -Force

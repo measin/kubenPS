@@ -1,0 +1,35 @@
+#Først må vi installere modulen for SQL server.
+
+Install-Module -Name SqlServer
+
+#Om du har modulen fra før, så kan du kjøre 
+
+Update-Module -Name SqlServer
+
+# Test tilkobling til din SQL server
+try
+{
+    # This is a simple user/pass connection string.
+    # Feel free to substitute "Integrated Security=True" for system logins.
+    $connString = "Data Source=YourInstance;Database=YourDB;User ID=YourUser;Password=YourPassword"
+
+    #Create a SQL connection object
+    $conn = New-Object System.Data.SqlClient.SqlConnection $connString
+
+    #Attempt to open the connection
+    $conn.Open()
+    if($conn.State -eq "Open")
+    {
+        # We have a successful connection here
+        # Notify of successful connection
+        Write-Host "Test connection successful"
+        $conn.Close()
+    }
+    # We could not connect here
+    # Notify connection was not in the "open" state
+}
+catch
+{
+    # We could not connect here
+    # Notify there was an error connecting to the database
+}

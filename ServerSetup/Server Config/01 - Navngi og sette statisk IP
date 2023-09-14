@@ -14,6 +14,6 @@ $DNS = Read-Host -Prompt 'Hva er DNS adressen i nettverket?'
 
 Rename-Computer -NewName $name
 
-Set-NetIPAddress -InterfaceIndex $netadpter -IPAddress $IP -AddressFamily IPv4 -PrefixLength 24 -PrefixOrigin Manual
+New-NetIPAddress -IPAddress $IP -InterfaceIndex $netadpter -PrefixLength 24 -AddressFamily IPv4 -DefaultGateway 192.168.2.1
 Set-NetRoute -InterfaceIndex $netadpter -DestinationPrefix 0.0.0.0/0 -NextHop $gateway
 Set-DnsClientServerAddress -InterfaceIndex $netadpter -ServerAddresses $DNS

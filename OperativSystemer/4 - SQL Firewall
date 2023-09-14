@@ -1,0 +1,30 @@
+<#
+Konfigurere brannmuren for å slippe gjenom trafikk fra andre maskiner i nettverket.
+OM du konfigurerer databasen til å bruke en annen port, så må du endre -LocalPort elementet slik at det reflekterer dette.
+
+#>
+
+New-NetFirewallRule -DisplayName "SQLServer default instance" -Direction Inbound -LocalPort 1433 -Protocol TCP -Action Allow
+New-NetFirewallRule -DisplayName "SQLServer Browser service" -Direction Inbound -LocalPort 1434 -Protocol UDP -Action Allow
+
+<#
+Lær deg om MS SQL
+https://learn.microsoft.com/en-us/sql/powershell/sql-server-powershell?view=sql-server-ver16&viewFallbackFrom=sqlserver-ps
+https://learn.microsoft.com/en-us/sql/sql-server/?view=sql-server-ver16
+https://learn.microsoft.com/en-us/sql/ssms/tutorials/ssms-configuration?view=sql-server-ver16
+
+VIsual Studio Plugins for SQL 
+https://learn.microsoft.com/en-us/sql/tools/visual-studio-code/mssql-extensions?view=sql-server-ver16
+
+
+MS har laget noen eksempel databaser med data som du kan laste ned og leke med. Du finner informasjon her: 
+https://learn.microsoft.com/en-us/sql/samples/sql-samples-where-are?view=sql-server-ver16
+
+SQL Injection
+SQL injection is an attack in which malicious code is inserted into strings that are later passed to the Database Engine for parsing and execution. 
+Any procedure that constructs SQL statements should be reviewed for injection vulnerabilities because SQL Server will execute all syntactically valid queries that it receives. 
+All database systems have some risk of SQL Injection, and many of the vulnerabilities are introduced in the application that is querying the Database Engine.
+You can thwart SQL injection attacks by using stored procedures and parameterized commands, avoiding dynamic SQL, and restricting permissions on all users. 
+For more information, see https://learn.microsoft.com/en-us/sql/relational-databases/security/sql-injection?view=sql-server-ver16.
+
+#>

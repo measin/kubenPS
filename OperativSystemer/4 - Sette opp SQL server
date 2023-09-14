@@ -1,0 +1,16 @@
+Her skal du logge på Portalen for Azure og så går du til Education, hvor du kan laste nede Software.
+
+https://portal.azure.com/#view/Microsoft_Azure_Education/EducationMenuBlade/~/software
+
+Du må verifisere deg som skoleelev om det er første gang du er innom her.
+
+Last ned :
+    SQL Server 2019 Developer
+
+    Installer denne på serveren.
+    Dette er SWL serveren til MS
+    Utforsk denne og se om du finner ut av hvordan den settes opp.
+
+Du kan også se på SSMS og lese litt om denne managment suiten for MSSQL
+
+https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16

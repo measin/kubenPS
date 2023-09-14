@@ -1,0 +1,15 @@
+<#
+Vi skal nå sette opp en fildeling i nettverket. Vi gjør dette hovedsaklig på servere i et domene. 
+Men man kan også gjøre dette på en pc i et lokalt nettverk.
+Vi bruker folderen vi laget i "Creating Folders" og setter denne opp som en delt mappe i nettverket. 
+-Name er navnet vi vil at brukerne skal se. -Description er beskrivelsen av mappen. -ConcurrentUserLimit er hvor mange som kan være tilkoblet samtidig.
+-FullAccess er hvilke brukere som skal ha full tilgang til det som deles
+-ReadAccess er for de som kun skal få lese fra mappen.
+Man kan også om man vil spesifisere -NoAccess, ingen tilgang for spesifikke brukere eller grupper.
+#>
+
+New-SmbShare -Name 'Shared Files' -Path C:\Filsehare1 -Description 'Dette er en delt folder i nettverket' -ConcurrentUserLimit 4 -FullAccess Administrators -ReadAccess Users
+
+$ADobj = Import-Csv C:\Users\Measi\OneDrive\Skrivebord\ADComputerName.csv
+
+Get-VM

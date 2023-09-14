@@ -1,0 +1,8 @@
+#FØrst kan vi sjekk hva som er installert på serveren vår:
+Get-WindowsFeature -Online
+
+
+
+#Sette opp tjenester på serveren vår
+
+Install-WindowsFeature -Name AD-Domain-Services, DHCP, DNS -Online
