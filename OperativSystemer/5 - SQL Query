@@ -1,0 +1,34 @@
+CREATE DATABASE NAME;
+
+USE DATABASE NAME;
+
+CREATE TABLE employees (
+employee_id INT PRIMARY KEY,
+first_name VARCHAR(50),
+last_name VARCHAR(50),
+salary DECIMAL(10, 2),
+Status ENUM('active', 'disabled') DEFAULT 'active',
+Hire_date DATE
+);
+/*
+Her har jeg brukt "ENUM" som datatype, denne gjør at du kan sette verdier som statiske verdier. 
+Nyttig når man ikke vil at feltet skal være tilgjengelig for brukere som sådant, men settes ut ifra kriterier du selv velger.
+Kan f.eks brukes for å sette type bruker; admin, regular, moulator. 
+ENUM lager en separat tabell med verdiene du lager, og lager derfor en slaks foreign key for relasjonen til din database. 
+ENUM bør ikke brukes for tallverdier.
+*/
+
+INSERT INTO employees (first_name, last_name, email)
+VALUES ('John', 'Doe', 'john.doe@example.com');
+
+
+INSERT INTO employees (first_name, last_name, email)
+VALUES 
+('Jane', 'Smith', 'jane.smith@example.com'),
+('Robert', 'Brown', 'robert.brown@example.com');
+
+Hente data fra annen DATABASE
+INSERT INTO employees (first_name, last_name, email)
+SELECT first_name, last_name, email
+FROM temp_employees
+WHERE status = 'active';

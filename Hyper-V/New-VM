@@ -30,10 +30,10 @@ Default Switch Internal
 Så kan vi sette opp et nytt VM på en enkel måte.
 #>
 $mem = 4096MB #Hvor mye minne skal du gi til maskinen?
-$switch = 'ADminLan'
-$vhdpath = 'E:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
+$switch = 'Ekstern'
+$vhdpath = 'C:\VirtualMachines' #Lokasjonen for den virtuelle harddisken
 $vhdsize = 256GB
-$dvd = "F:\ISO\en-us_windows_server_2022_x64_dvd_620d7eac.iso" #Bane til ISO filen som har operativsystemet
+$dvd = "C:\Users\Measi\Downloads\OPNsense-25.1-dvd-amd64.iso\OPNsense-25.1-dvd-amd64.iso" #Bane til ISO filen som har operativsystemet
 $vmname = (Read-Host -Prompt 'Skiv inn navnet på din virtuelle  maskin') #Hva skal den virtuelle maskinen hete?
 
 #Så lager vi den virtuelle maskinen med variablene vi har satt opp.
@@ -42,7 +42,7 @@ New-VM -Name $vmname -MemoryStartupBytes $mem -SwitchName $switch -NewVHDSizeByt
 
 Set-VMMemory -VMName $vmname -DynamicMemory $true
 
-Set-VM -Name $vmname -ProcessorCount 4 -DynamicMemory -Notes 'Dette er en Virtuell maskin for generelt bruk'
+Set-VM -Name $vmname -ProcessorCount 4 -DynamicMemory -Notes 'Firewall for DC1 DC2 og DCKlient'
 Add-VMScsiController -VMName $vmname
 Add-VMDvdDrive -VMName $vmname -ControllerNumber 1 -Path $dvd
 
@@ -52,3 +52,4 @@ $diskphy = Get-VMHardDiskDrive -VMName $vmname
 $dvdboot = Get-VMDvdDrive -VMName $vmname
 Set-VMFirmware -VMName $vmname -BootOrder $dvdboot, $diskphy, $network
 
+Set-VMFirmware -VMName $vmname -EnableSecureBoot Off
