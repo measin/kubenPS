@@ -15,4 +15,4 @@ $DomainPassword = Read-Host -Prompt "Hva skal passordet være?" -AsSecureString 
 
 Test-ADDSForestInstallation -DomainName $DomainName -InstallDns -SafeModeAdministratorPassword $DomainPassword
 
-Install-ADDSFor
+Install-ADDSForrest -DomainName "demo.system" -SafeModeAdministratorPassword (convertto-SecureString IMKuben1337! -AsPlainText)

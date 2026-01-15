@@ -4,7 +4,7 @@
 "Verb-Noun"
 
 # Help system legg til bryteren -ShoWindow for å åpne i egen søkbart windu.
-Get-Help    
+Get-Help
 Update-Help
 Get-Help about*
 Get-Help about_modules -ShowWindow
@@ -15,6 +15,7 @@ Get-Command | Measure-Object
 
 # Get, Set, New, Connect, Exit, 
 # Explore modules
+Get-Module -ListAvailable
 Get-Module -All
 Get-Module -Name Microsoft.PowerShell.Utility
 Get-Command -Module NetTCPIP 

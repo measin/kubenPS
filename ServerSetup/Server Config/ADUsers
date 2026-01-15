@@ -1,5 +1,5 @@
 $pass = ConvertTo-SecureString -String "IMKuben1337!" -AsPlainText -Force
-$ou = "OU=IMBASEPPL,DC=DemoDomain,DC=it"
+$ou = "OU=Elever,DC=IM1,DC=kuben"
 $users = Import-Csv C:\Users\Administrator\Desktop\users.csv
 
 foreach ($user in $users) {
@@ -10,18 +10,15 @@ foreach ($user in $users) {
   Displayname = "$($user.firstname) $($user.lastname)"
   Path = $ou
   Surname = $user.lastname
-  GivenName = $user.firstname
+  GivenName = $user.fullname
   Samaccountname = "$samaccountname"
   UserPrincipalName = "$samaccountname@$env:userdnsdomain"
-  Department = $user.department
   Office = 'Kabelgata 10-12'
-  Manager = $user.manager
-  OfficePhone = $user.Mobilnummer  
   AccountPassword = $pass
   Enabled = $True
   ChangePasswordAtLogon = $True
-  City = $city
-  Description = "elever"
+  City = 'Oslo'
+  Description = "elev vg2 IM Kuben"
   otherattributes = @{"info"="Created $(Get-Date) by $env:userdomain\$env:username"}
  }
 
