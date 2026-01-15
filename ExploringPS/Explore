@@ -23,7 +23,7 @@ Get-Command -Module Hyper-V
 Get-Command -Module Microsoft.PowerShell.Security
 Get-Command -Module ActiveDirectory -Verb get
 
-get-help *vm*
+get-help *vm
 Get-Command -Module Hyper-V
 get-help *switch*
 Get-Command -Module NetworkSwitchManager
